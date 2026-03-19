@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
-from main import X_train, X_test, y_train, y_test
+from praktika1 import X_train, X_test, y_train, y_test
 import time
 
 # Создаём последовательную модель
@@ -14,16 +14,16 @@ model = Sequential([
 
 # Компилируем модель
 model.compile(optimizer='adam',
-    loss='binary_crossentropy',
-    metrics=['accuracy'])
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
 
 # Обучаем модель и замеряем время
 start_time = time.perf_counter()
 history = model.fit(X_train, y_train,
-    epochs=100,
-    batch_size=32,
-    validation_split=0.2,
-    verbose=1)
+                    epochs=100,
+                    batch_size=32,
+                    validation_split=0.2,
+                    verbose=1)
 sum(range(10000000))
 end_time = time.perf_counter()
 execution_time = end_time - start_time

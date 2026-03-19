@@ -1,9 +1,8 @@
-import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-from main import X_train, X_test, y_train, y_test
+from praktika1 import X_train, X_test, y_train, y_test
 import time
 
 # Конвертируем данные в тензоры PyTorch
