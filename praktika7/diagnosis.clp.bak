@@ -1,0 +1,44 @@
+(deftemplate symptom
+  (slot name)
+  (slot value))
+
+(deffacts initial-state
+  (symptom (name problem) (value unknown)))
+
+(defrule power-supply-problem
+  (symptom (name power) (value no))
+  (symptom (name beeps) (value none))
+  =>
+  (printout t "Проблема с блоком питания." crlf)
+  (assert (diagnosis power-supply)))
+
+(defrule memory-or-video-problem
+  (symptom (name beeps) (value yes))
+  =>
+  (printout t "Проблема с оперативной памятью или видеокартой." crlf)
+  (assert (diagnosis hardware-issue)))
+
+(defrule video-card-problem
+  (symptom (name screen) (value black))
+  (symptom (name beeps) (value yes))
+  =>
+  (printout t "Проблема с видеокартой." crlf)
+  (assert (diagnosis video-card)))
+
+(defrule boot-device-problem
+  (symptom (name error-message) (value "No boot device"))
+  =>
+  (printout t "Проблема с жёстким диском или его подключением." crlf)
+  (assert (diagnosis boot-device)))
+
+(defrule overheating-problem
+  (symptom (name reboot) (value spontaneous))
+  =>
+  (printout t "Перегрев процессора или нестабильное питание." crlf)
+  (assert (diagnosis overheating)))
+
+(defrule end-diagnosis
+  ?f <- (diagnosis ?d)
+  =>
+  (printout t "Диагностика завершена. Рекомендация: обратитесь в сервисный центр." crlf)
+  (retract ?f))
