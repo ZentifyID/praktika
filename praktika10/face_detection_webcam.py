@@ -1,7 +1,7 @@
 import cv2
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-video_capture = cv2.VideoCapture(0)  # 0 — индекс камеры (обычно встроенная)
+video_capture = cv2.VideoCapture(1)  # 0 — индекс камеры (обычно встроенная)
 
 while True:
     # Захват кадра
